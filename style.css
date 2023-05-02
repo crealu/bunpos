@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+body {
+  overflow: hidden;
+  scroll-behavior: none;
+}
+
+:root {
+  --btn-color: #72cc9e;
+  --btn-green: #C5F0C4;
+  --btn-blue: #BDDCED;
+  --btn-orange: #F0E9C4;
+  --btn-purple: #CFC4F0;
+
+  --font-title-color: #6D6D6D;
+}
+
+.saved-sentences {
+  display: none;
+}
+
+.jem-sentence-saved {
+  position: relative;
+  width: 100%;
+  float: left;
+  display: inline-block;
+  font-size: 26px;
+}
+
+.sentence-part {
+  position: relative;
+  display: inline-block;
+  float: left;
+  padding: 4px 10px 4px 10px;
+}
+
+.ui-wrapper {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 40vw;
+}
+
+.split-btn {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  margin-right: 20px;
+  margin-left: 20px;
+  background: none;
+  border: 3px solid var(--font-title-color);
+  border-radius: 6px;
+  box-shadow: 0px 0px 20px 0px #535353;
+  color: var(--font-title-color);
+  font-family: 'Comfortaa';
+  padding: 8px;
+  letter-spacing: 3px;
+  top: 10vh;
+  font-size: 24px;
+  transition: 0.25s ease-in-out;
+}
+
+.split-btn:hover {
+  cursor: pointer;
+  color: white;
+  background: var(--font-title-color);
+}
+
+.main {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  top: 24vh;
+  font-family: 'Comfortaa';
+}
+
+.main-inner {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 80vw;
+  padding: 20px;
+}
+
+.jem-row {
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+.jem-title {
+  position: relative;
+  float: left;
+  width: 40px;
+  padding-right: 10px;
+  display: inline-block;
+  font-size: 26px;
+  top: 5px;
+  color: var(--font-title-color);
+}
+
+.jem-add {
+  position: relative;
+  float: left;
+  display: inline-block;
+  border-radius: 8px;
+  background: none;
+  font-size: 26px;
+  width: 46px;
+  height: 46px;
+  transition: 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.jem-add:focus {
+  outline: none;
+}
+
+.j-btn {
+  color: var(--btn-green);
+  border: 3px solid var(--btn-green);
+}
+
+.j-btn:hover {
+  color: white;
+  background: var(--btn-green);
+}
+
+.r-btn {
+  color: var(--btn-blue);
+  border: 3px solid var(--btn-blue);
+}
+
+.r-btn:hover {
+  color: white;
+  background: var(--btn-blue);
+}
+
+.m-btn {
+  color: var(--btn-orange);
+  border: 3px solid var(--btn-orange);
+}
+
+.m-btn:hover {
+  color: white;
+  background: var(--btn-orange);
+}
+
+.e-btn {
+  color: var(--btn-purple);
+  border: 3px solid var(--btn-purple);
+}
+
+.e-btn:hover {
+  color: white;
+  background: var(--btn-purple);
+}
+
+.jem-sentence {
+  position: relative;
+  float: left;
+  display: inline-block;
+  font-size: 26px;
+}
+
+.jem-input {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin: 0px 10px 0px 10px;
+  font-size: 22px;
+  padding: 8px;
+  width: 40px;
+  border-radius: 8px;
+  background: none;
+  color: var(--font-title-color);
+}
+
+.jem-input:focus {
+  outline: none;
+}
+
+/* the form */
+.submit-form {
+  position: absolute;
+  margin: 0 auto;
+  display: block;
+  width: 350px;
+  height: 550px;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  box-shadow: 0px 0px 10px #353535;
+  border-radius: 6px;
+  background: white;
+}
+
+.form-input {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin: 0px 4px 0px 4px;
+}
