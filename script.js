@@ -1,38 +1,32 @@
-var selLoc;
-var currentInput;
-var inputToConnect;
-var connectingString;
-var connectingParent;
+let selLoc;
+let currentInput;
+let inputToConnect;
+let connectingString;
+let connectingParent;
 
 function checkInputLength() {
-  var inp = this.textContent;
+  let inp = this.textContent;
   inp.length < 2 ? this.style.width = '20px': this.style.width = 'auto';
 }
 
-function checkNewlyMadeInputLength(e) {
-  var inp = e.textContent;
-  inp.length < 2 ? e.style.width = '20px': e.style.width = 'auto';
+function checkNewInputLength(input) {
+  input.style.width = input.textContent < 2 ? '20px' : 'auto';
 }
 
-function assignCurrentInput() {
+function setCurrentInput() {
   currentInput = this;
   selLoc = window.getSelection().anchorOffset;
 }
 
 function splitSection() {
-  var currentParent = currentInput.parentNode;
-  var jemTitle = currentParent.previousElementSibling.previousElementSibling.textContent.toLowerCase();
-
-  var theString = currentInput.textContent;
-  var halfOne = theString.slice(0, selLoc);
-  var halfTwo = theString.slice(selLoc, theString.length);
-
-  halfOne != '' ? currentInput.textContent = halfOne: null;
-  /*if (halfOne != '') {
-    currentInput.textContent = halfOne;
-  }*/
+  let currentParent = currentInput.parentNode;
+  let jemTitle = currentParent.previousElementSibling.previousElementSibling.textContent.toLowerCase();
+  let theString = currentInput.textContent;
+  let halfOne = theString.slice(0, selLoc);
+  let halfTwo = theString.slice(selLoc, theString.length);
+  currentInput = halfOne != '' ? halfOne : '';
   if (halfTwo != '') {
-    var newInput = createInput(jemTitle);
+    let newInput = createInput(jemTitle);
     newInput.textContent = halfTwo;
     currentInput.insertAdjacentElement('afterend', newInput);
     checkNewlyMadeInputLength(newInput);
@@ -42,9 +36,9 @@ function splitSection() {
 function setConnectMode() {
   currentInput.style.background = '#ffc3c3';
   inputToConnect = currentInput;
-  var currentParent = currentInput.parentNode;
+  let currentParent = currentInput.parentNode;
   console.dir(currentParent);
-  for (var c = 0; c < currentParent.children.length; c++) {
+  for (let c = 0; c < currentParent.children.length; c++) {
     currentParent.children[c].addEventListener('click', connectSection);
   }
   connectingString = currentInput.textContent;
@@ -55,7 +49,7 @@ function connectSection() {
 }
 
 function createInput(title) {
-  var newInput = document.createElement("span");
+  let newInput = document.createElement("span");
   newInput.classList.add('jem-input');
   newInput.setAttribute('contenteditable', 'true');
 
@@ -71,22 +65,21 @@ function createInput(title) {
   newInput.addEventListener('keyup', e => {
     console.log(window.getSelection().anchorOffset);
   });
-  newInput.addEventListener('click', assignCurrentInput);
+  newInput.addEventListener('click', setCurrentInput);
   return newInput;
 }
 
 function addInput() {
-  var jemSentence = this.nextElementSibling;
-  var jemTitle = this.previousElementSibling.textContent.toLowerCase();
-
-  var newInput = createInput(jemTitle);
+  let jemSentence = this.nextElementSibling;
+  let jemTitle = this.previousElementSibling.textContent.toLowerCase();
+  let newInput = createInput(jemTitle);
   newInput.textContent = ' ';
   jemSentence.appendChild(newInput);
 }
 
 function addListeners() {
   const jemButtons = document.getElementsByClassName('jem-add');
-  for (var j = 0; j < jemButtons.length; j++) {
+  for (let j = 0; j < jemButtons.length; j++) {
     jemButtons[j].addEventListener('click', addInput);
   }
 
