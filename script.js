@@ -1,10 +1,13 @@
-let selLoc;
+let cursorLocation;
 let currentInput;
 let inputToConnect;
 let connectingString;
 let connectingParent;
 
+let keysDown = [];
+
 function checkInputLength() {
+
   let inp = this.textContent;
   inp.length < 2 ? this.style.width = '20px': this.style.width = 'auto';
 }
@@ -15,15 +18,15 @@ function checkNewInputLength(input) {
 
 function setCurrentInput() {
   currentInput = this;
-  selLoc = window.getSelection().anchorOffset;
+  cursorLocation = window.getSelection().anchorOffset;
 }
 
 function splitSection() {
   let currentParent = currentInput.parentNode;
   let jemTitle = currentParent.previousElementSibling.previousElementSibling.textContent.toLowerCase();
   let theString = currentInput.textContent;
-  let halfOne = theString.slice(0, selLoc);
-  let halfTwo = theString.slice(selLoc, theString.length);
+  let halfOne = theString.slice(0, cursorLocation);
+  let halfTwo = theString.slice(cursorLocation, theString.length);
   currentInput = halfOne != '' ? halfOne : '';
   if (halfTwo != '') {
     let newInput = createInput(jemTitle);
@@ -83,7 +86,22 @@ function addListeners() {
     jemButtons[j].addEventListener('click', addInput);
   }
 
-  document.addEventListener('keydown', e => { console.log(e.keyCode) });
+  document.addEventListener('keydown', (event) => {
+
+    if (keysDown.length == 2) {
+      keysDown = [];
+      keysDown[0] = event.key;
+    } else {
+      keysDown.push(event.key);
+    }
+
+    if (keysDown[0] == 's' && keysDown[1] == 's') {
+      splitSection();
+      keysDown = [];
+    }
+    console.log(event.key);
+  });
+
 }
 
 function onloadFunctions() {
