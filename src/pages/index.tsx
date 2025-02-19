@@ -2,7 +2,8 @@ import styles from "@/styles/home.module.css";
 import handler from './api/hello';
 
 export async function getServerSideProps() {
-	const res = await fetch("http://localhost:3000/api/hello");
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+	const res = await fetch(`${baseUrl}/api/hello`);
 	const data = await res.json();
 
 	return { props: { data } };

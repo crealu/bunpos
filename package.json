@@ -5,8 +5,12 @@
   "main": "script.js",
   "scripts": {
     "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "keywords": [],
   "author": "",
