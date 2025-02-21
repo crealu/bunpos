@@ -3,7 +3,7 @@ import styles from "@/styles/chat.module.css"
 import homeStyles from "@/styles/home.module.css"
 import { useState, useEffect } from 'react';
 
-function Bubble({ text, index }) {
+function Bubble({ text : string, index : number }) {
 	const setBubbleStyle = () => {
 		return `${index % 2 == 0 ? styles.user_bubble : styles.agent_bubble}`
 	}
