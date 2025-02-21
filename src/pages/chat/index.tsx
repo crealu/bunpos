@@ -21,10 +21,10 @@ const Bubble:React.FC<BubbleProps> = ({ text, index }) => {
 }
 
 export default function Chat() {
-	const [name, setName] = useState('');
-	const [messages, setMessages] = useState(null);
-	const [prompt, setPrompt] = useState('');
-	const [agentResponse, setAgentResponse] = useState('');
+	const [name, setName] = useState<string>('');
+	const [messages, setMessages] = useState<string[]>(null);
+	const [prompt, setPrompt] = useState<string>('');
+	const [agentResponse, setAgentResponse] = useState<string>('');
 
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -52,7 +52,7 @@ export default function Chat() {
 	}
 
 	async function handleSend() {
-		const newThread = [...messages, prompt];
+		const newThread = [...(messages ?? []), prompt];
 		setPrompt('');
 		setMessages(newThread);
 
