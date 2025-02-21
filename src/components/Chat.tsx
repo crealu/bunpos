@@ -33,7 +33,7 @@ export default function Chat() {
 		setMessages(data.messages);
 	}
 
-	function updatePrompt(event) {
+	function updatePrompt(event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		setPrompt(event.target.value);
 	}
 
