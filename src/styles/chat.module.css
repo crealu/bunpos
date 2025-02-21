@@ -1,0 +1,121 @@
+.chat {
+	width: 70%;
+}
+
+.chat_title {
+	text-align: center;
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bubble_row {
+	max-width: 100%;
+/*  padding: 10px 15px;*/
+  border-radius: 15px;
+  font-size: 16px;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+.user_bubble {
+	text-align: right;
+	align-self: flex-end;
+  background-color: var(--bubble-gray-1);
+  color: white;
+  padding: 10px 15px;
+}
+
+.agent_bubble {
+	align-self: flex-start;
+  color: white;
+  line-height: 30px;
+}
+
+.input_wrapper {
+	border: none;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+/*	background-color: var(--bubble-gray-1);*/
+  background-color: var(--input-gray-1);
+
+	padding: 12px 15px;
+	border-radius: 20px;
+	width: calc(600px - 20px);
+}
+
+.prompt {
+	resize: none;
+	font-size: 16px;
+	width: 100%;
+	border: none;
+	background: none;
+	font-family: var(--family-main);
+	padding-top: 5px;
+}
+
+.prompt:focus {
+	outline: none;
+}
+
+.input_wrapper_bottom {
+	display: flex;
+	flex-direction: row;
+	align-content: flex-end;
+	justify-content: space-between;
+}
+
+.btn_group {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	padding: 8px 12px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+}
+
+.btn_group:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.btn_group img {
+	width: 20px;
+	height: 16px;
+	padding-right: 4px;
+}
+
+.btn_group p {
+	font-size: 14px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.submit_btn {
+	position: right;
+	align-self: flex-end;
+	background: none;
+	border: none;
+}
+
+.send_img {
+	opacity: 0.8;
+	transition: 0.25s ease;
+	cursor: pointer;
+}
+
+.send_img:hover {
+	opacity: 1;
+}
+
+@media (max-width: 800px) and (min-width: 200px) {
+	.chat {
+		width: 90%;
+	}
+}

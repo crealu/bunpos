@@ -4,7 +4,7 @@
   "description": "Next.js project for restructuing Japanese sentences",
   "main": "script.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "next": "^15.1.7",
+    "openai": "^4.85.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

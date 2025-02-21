@@ -1,29 +1,14 @@
 import styles from "@/styles/home.module.css";
-import handler from './api/hello';
+import Chat from './components/Chat';
+import Splitter from './components/Splitter';
 
-export async function getServerSideProps() {
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-	const res = await fetch(`${baseUrl}/api/hello`);
-	const data = await res.json();
-
-	return { props: { data } };
-}
-
-export default function Home({ data }: { data: { name: string; count: number } }) {
+export default function Home({ data }: { data: { name: string; count: number }}) {
 	return (
 		<>
-			<title>Bunpos Custom Next App</title>
-
+			<title>Bunpos Chat</title>
 			<main className={styles.main}>
-				<div className={styles.rendered}>
-					<h3>Rendered with getServerSideProps</h3>
-					<p>Name: {data.name}, Count: {data.count}</p>
-				</div>
-
-				<div className={styles.client_comp}>
-					<button className={styles.split_btn}>Split</button>
-					<input className={styles.sentence_inp} />
-				</div>
+				{/*<Splitter />*/}
+				<Chat />
 			</main>
 		</>
 	)

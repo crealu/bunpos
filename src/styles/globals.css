@@ -1,6 +1,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main-gray-1: #212121;
+  --bubble-gray-1: #424242;
+  --input-gray-1: #303030;
+  --font-main: #eaeaea;
+  --family-main: Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,9 +22,9 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--font-main);
+  background: var(--main-gray-1);
+  font-family: var(--family-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
