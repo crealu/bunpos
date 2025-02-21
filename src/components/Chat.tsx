@@ -2,7 +2,12 @@
 import styles from "@/styles/chat.module.css"
 import { useState, useEffect } from 'react';
 
-function Bubble({ text, index }) {
+interface BubbleProps {
+	text: string;
+	index: number;
+}
+
+const Bubble:React.FC<BubbleProps> = ({ text, index }) => {
 	const setBubbleStyle = () => {
 		return `${index % 2 == 0 ? styles.user_bubble : styles.agent_bubble}`
 	}

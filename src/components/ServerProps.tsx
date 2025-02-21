@@ -1,6 +1,11 @@
 import styles from "@/styles/home.module.css";
 
-export default function ServerProps({ data }) {
+interface Data {
+	name: string;
+	count: number;
+}
+
+export default function ServerProps({ data } : Data) {
 	return (
 		<div className={styles.rendered}>
 			<h3>Rendered with getServerSideProps</h3>
