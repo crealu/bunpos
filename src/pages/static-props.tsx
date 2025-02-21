@@ -1,5 +1,5 @@
 import styles from "@/styles/home.module.css";
-import ServerProps from './components/ServerProps';
+import ServerProps from '../components/ServerProps';
 
 // Best for data that doesn't change often (e.g., blog posts, documentation).
 // More performant than getServerSideProps because the page is pre-rendered at build time.

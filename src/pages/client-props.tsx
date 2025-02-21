@@ -1,6 +1,6 @@
 "use client";
 import styles from "@/styles/home.module.css";
-import ServerProps from './components/ServerProps';
+import ServerProps from '../components/ServerProps';
 import { useState, useEffect } from 'react';
 
 // Best for data that updates frequently (e.g., real-time data, chat messages, stock prices).
