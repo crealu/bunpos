@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { OpenAI } from 'openai';
+// import { OpenAI } from 'openai';
 
 // type Thread = {
 // 	name: string,
@@ -12,7 +12,8 @@ export default async function prompt(
 ) {
 
 	const { prompt } = req.body;
-
+	console.log(prompt);
+	
 	// const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 	// const completion = await openai.chat.completions.create({

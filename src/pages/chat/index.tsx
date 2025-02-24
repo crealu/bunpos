@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/styles/chat.module.css"
 import homeStyles from "@/styles/home.module.css"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 
 interface BubbleProps {
 	text: string;
@@ -22,9 +22,8 @@ const Bubble:React.FC<BubbleProps> = ({ text, index }) => {
 
 export default function Chat() {
 	const [name, setName] = useState<string>('');
-	const [messages, setMessages] = useState<string[]>(null);
+	const [messages, setMessages] = useState<string[]>(['']);
 	const [prompt, setPrompt] = useState<string>('');
-	const [agentResponse, setAgentResponse] = useState<string>('');
 
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -34,8 +33,9 @@ export default function Chat() {
 		setMessages(data.messages);
 	}
 
-	function updatePrompt(event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-		setPrompt(event.target.value);
+	function updatePrompt(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
+		setPrompt(event.currentTarget.value);
+		// setPrompt(event.target.value);
 	}
 
 	async function askAgent() {
@@ -81,7 +81,7 @@ export default function Chat() {
 							<textarea 
 								value={prompt}
 								className={styles.prompt}
-								onInput={(e) => { updatePrompt(e) }}
+								onInput={(e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => { updatePrompt(e) }}
 								placeholder="Message Bunpos"
 							></textarea>
 						</div>

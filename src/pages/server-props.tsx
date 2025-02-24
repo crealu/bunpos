@@ -1,4 +1,4 @@
-import styles from "@/styles/home.module.css";
+// import styles from "@/styles/home.module.css";
 import ServerProps from '../components/ServerProps';
 
 // Best for dynamic data that must be up-to-date on every request (e.g., user-specific dashboards, frequently changing API data).

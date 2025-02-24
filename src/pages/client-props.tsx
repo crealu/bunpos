@@ -1,5 +1,5 @@
 "use client";
-import styles from "@/styles/home.module.css";
+// import styles from "@/styles/home.module.css";
 import ServerProps from '../components/ServerProps';
 import { useState, useEffect } from 'react';
 
@@ -7,8 +7,13 @@ import { useState, useEffect } from 'react';
 // Keeps the initial page load fast because the page renders first, then fetches data.
 // The page won't be pre-rendered with data, so SEO might suffer.
 
+interface Data {
+	name: string;
+	count: number;
+}
+
 export default function Home() {
-	const [data, setData] = useState({})
+	const [data, setData] = useState<Data>({name: '', count: 0})
 
 	async function getProps() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
