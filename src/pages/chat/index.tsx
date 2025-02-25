@@ -20,16 +20,40 @@ const Bubble:React.FC<BubbleProps> = ({ text, index }) => {
 	)
 }
 
+type Message = {
+	role: string,
+	content: string
+}
+
+interface ThreadProps {
+	messages: Message[];
+}
+
+const Thread:React.FC<ThreadProps> = ({ messages }) => {
+	return (
+		<div className={styles.thread}>
+			{messages?.map((msg, idx) => {
+				return <Bubble text={msg.content} index={idx} key={idx} />
+			})}
+		</div>
+	)
+}
+
+
 export default function Chat() {
 	const [name, setName] = useState<string>('');
-	const [messages, setMessages] = useState<string[]>(['']);
+	const [messages, setMessages] = useState<Message[]>([{ role: '', content: '' }]);
 	const [prompt, setPrompt] = useState<string>('');
+	const [tail, setTail] = useState<string[]>(['']);
 
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 		const res = await fetch(`${baseUrl}/api/messages`);
 		const data = await res.json();
 		setName(data.name);
+
+		data.messages.splice(0, 1);
+
 		setMessages(data.messages);
 	}
 
@@ -42,7 +66,7 @@ export default function Chat() {
 		const options = {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({ prompt: prompt })
+			body: JSON.stringify({ prompt: prompt, tail: tail })
 		}
 
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -52,12 +76,18 @@ export default function Chat() {
 	}
 
 	async function handleSend() {
-		const newThread = [...(messages ?? []), prompt];
+		const newMessage = {
+			role: 'user',
+			conten: prompt
+		}
+		const newThread = [...(messages ?? []), newMessage];
 		setPrompt('');
 		setMessages(newThread);
 
+		const theTail = messages.length >= 4 ? messages.slice(messages.length - 4) : messages;
+		setTail(theTail);
+
 		const response = await askAgent();
-		console.log(response);
 
 		const updatedMessages = [...newThread, response];
 		setMessages(updatedMessages);
@@ -72,7 +102,7 @@ export default function Chat() {
 					<h4 className={styles.chat_title}>{name}</h4>
 					<div className={styles.thread}>
 						{messages?.map((msg, idx) => {
-							return <Bubble text={msg} index={idx} key={idx} />
+							return <Bubble text={msg.content} index={idx} key={idx} />
 						})}
 					</div>
 

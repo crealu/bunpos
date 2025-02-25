@@ -11,9 +11,11 @@ export default async function prompt(
 	res: NextApiResponse,
 ) {
 
-	const { prompt } = req.body;
-	console.log(prompt);
-	
+	let { prompt, tail } = req.body;
+	console.log(prompt, tail);
+
+	tail.push()
+
 	// const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 	// const completion = await openai.chat.completions.create({
