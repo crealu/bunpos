@@ -1,31 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-// import { OpenAI } from 'openai';
-
-// type Thread = {
-// 	name: string,
-// 	messages: string[]
-// }
+import { OpenAI } from 'openai';
 
 export default async function prompt(
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) {
 
-	let { prompt, tail } = req.body;
-	console.log(prompt, tail);
+	let { tail } = req.body;
+	console.log(tail);
 
-	tail.push()
+	const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-	// const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+	const completion = await openai.chat.completions.create({
+		model: 'gpt-3.5-turbo',
+		messages: tail,
+	});
 
-	// const completion = await openai.chat.completions.create({
-	// 	model: 'gpt-3.5-turbo',
-	// 	messages: [{ role: 'user', content: prompt }]
-	// });
+	const agentResponse = completion.choices[0].message.content;
+	console.log(agentResponse);
 
-	// const response = completion.choices[0].message.content;
+	const response = {
+		role: 'assistant',
+		content: agentResponse
+	}
 
-	const response = 'Agent is currently inactive.'
-
-	res.status(200).json({ res: response })
+	res.status(200).json(response)
 }

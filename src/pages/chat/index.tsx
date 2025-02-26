@@ -44,7 +44,6 @@ export default function Chat() {
 	const [name, setName] = useState<string>('');
 	const [messages, setMessages] = useState<Message[]>([{ role: '', content: '' }]);
 	const [prompt, setPrompt] = useState<string>('');
-	const [tail, setTail] = useState<string[]>(['']);
 
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -62,34 +61,36 @@ export default function Chat() {
 		// setPrompt(event.target.value);
 	}
 
-	async function askAgent() {
+	async function askAgent(tail) {
+		console.log(tail);
+
 		const options = {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({ prompt: prompt, tail: tail })
+			body: JSON.stringify({ tail: tail })
 		}
 
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 		const res = await fetch(`${baseUrl}/api/openai`, options);
 		const data = await res.json();
-		return data.res;
+		return data;
 	}
 
 	async function handleSend() {
+
 		const newMessage = {
 			role: 'user',
-			conten: prompt
+			content: prompt,
 		}
+
 		const newThread = [...(messages ?? []), newMessage];
-		setPrompt('');
 		setMessages(newThread);
 
-		const theTail = messages.length >= 4 ? messages.slice(messages.length - 4) : messages;
-		setTail(theTail);
-
-		const response = await askAgent();
-
+		const theTail = newThread.length >= 4 ? newThread.slice(newThread.length - 4) : newThread;
+		const response = await askAgent(theTail);
 		const updatedMessages = [...newThread, response];
+
+		setPrompt('');
 		setMessages(updatedMessages);
 	}
 
