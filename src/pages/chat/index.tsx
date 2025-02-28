@@ -29,15 +29,15 @@ interface ThreadProps {
 	messages: Message[];
 }
 
-const Thread:React.FC<ThreadProps> = ({ messages }) => {
-	return (
-		<div className={styles.thread}>
-			{messages?.map((msg, idx) => {
-				return <Bubble text={msg.content} index={idx} key={idx} />
-			})}
-		</div>
-	)
-}
+// const Thread:React.FC<ThreadProps> = ({ messages }) => {
+// 	return (
+// 		<div className={styles.thread}>
+// 			{messages?.map((msg, idx) => {
+// 				return <Bubble text={msg.content} index={idx} key={idx} />
+// 			})}
+// 		</div>
+// 	)
+// }
 
 
 export default function Chat() {
@@ -54,6 +54,14 @@ export default function Chat() {
 		data.messages.splice(0, 1);
 
 		setMessages(data.messages);
+	}
+
+	async function pingRedis() {
+		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+		const res = await fetch(`${baseUrl}/api/redis`);
+		const data = await res.json();
+
+		console.log(data);
 	}
 
 	function updatePrompt(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -94,7 +102,10 @@ export default function Chat() {
 		setMessages(updatedMessages);
 	}
 
-	useEffect(() => { getMessages(); }, []);
+	useEffect(() => { 
+		getMessages(); 
+		pingRedis();
+	}, []);
 
 	return (
 		<div className={homeStyles.main}>

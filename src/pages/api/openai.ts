@@ -6,14 +6,13 @@ export default async function prompt(
 	res: NextApiResponse,
 ) {
 
-	let { tail } = req.body;
-	console.log(tail);
-
+	const { tail } = req.body;
 	const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 	const completion = await openai.chat.completions.create({
 		model: 'gpt-3.5-turbo',
 		messages: tail,
+		store: true,
+		stream: true,
 	});
 
 	const agentResponse = completion.choices[0].message.content;
