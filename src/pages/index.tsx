@@ -7,6 +7,7 @@ export default function Home() {
 			<title>Bunpos Chat</title>
 			<main className={styles.main}>
 				<Link href="/chat">Chat</Link>
+				<Link href="/cache">Cache</Link>
 			</main>
 		</>
 	)

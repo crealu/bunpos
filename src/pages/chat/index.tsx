@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/styles/chat.module.css"
 import homeStyles from "@/styles/home.module.css"
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, useMemo, FormEvent } from 'react';
 
 interface BubbleProps {
 	text: string;
@@ -39,11 +39,11 @@ interface ThreadProps {
 // 	)
 // }
 
-
 export default function Chat() {
 	const [name, setName] = useState<string>('');
 	const [messages, setMessages] = useState<Message[]>([{ role: '', content: '' }]);
 	const [prompt, setPrompt] = useState<string>('');
+
 
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -56,20 +56,11 @@ export default function Chat() {
 		setMessages(data.messages);
 	}
 
-	async function pingRedis() {
-		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-		const res = await fetch(`${baseUrl}/api/redis`);
-		const data = await res.json();
-
-		console.log(data);
-	}
-
 	function updatePrompt(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		setPrompt(event.currentTarget.value);
-		// setPrompt(event.target.value);
 	}
 
-	async function askAgent(tail) {
+	async function askAgent(tail: Message[]) {
 		console.log(tail);
 
 		const options = {
@@ -85,7 +76,6 @@ export default function Chat() {
 	}
 
 	async function handleSend() {
-
 		const newMessage = {
 			role: 'user',
 			content: prompt,
@@ -104,7 +94,6 @@ export default function Chat() {
 
 	useEffect(() => { 
 		getMessages(); 
-		pingRedis();
 	}, []);
 
 	return (

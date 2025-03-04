@@ -11,11 +11,14 @@ export default async function prompt(
 	const completion = await openai.chat.completions.create({
 		model: 'gpt-3.5-turbo',
 		messages: tail,
-		store: true,
-		stream: true,
+		// store: true,
+		// stream: true,
 	});
 
 	const agentResponse = completion.choices[0].message.content;
+	// for streaming
+	// const agentResponse = completion.choices[0].delta.content;
+
 	console.log(agentResponse);
 
 	const response = {
