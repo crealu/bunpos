@@ -84,11 +84,16 @@ export default function Chat() {
 		setMessages(newThread);
 
 		const theTail = newThread.length >= 4 ? newThread.slice(newThread.length - 4) : newThread;
-		// const response = await askAgent(theTail);
-		const response = {
-			role: 'assistant',
-			content: 'Agent unavailable'
+		let response;
+		if (messages.length > 10) {
+			response = {
+				role: 'assistant',
+				content: 'Maximum messages reached. Agent unavailable'
+			}
+		} else {
+			response = await askAgent(theTail);
 		}
+
 		const updatedMessages = [...newThread, response];
 
 		setPrompt('');
