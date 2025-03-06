@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/styles/chat.module.css"
 import homeStyles from "@/styles/home.module.css"
-import { useState, useEffect, useMemo, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 
 interface BubbleProps {
 	text: string;
@@ -25,9 +25,9 @@ type Message = {
 	content: string
 }
 
-interface ThreadProps {
-	messages: Message[];
-}
+// interface ThreadProps {
+// 	messages: Message[];
+// }
 
 // const Thread:React.FC<ThreadProps> = ({ messages }) => {
 // 	return (

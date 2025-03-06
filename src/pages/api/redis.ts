@@ -15,7 +15,7 @@ export default async function connector(
 
       return res.status(200).json({ saved: data });
     } catch (error) {
-      return res.status(500).json({ error: "Failed to read from Redis" });
+      return res.status(500).json({ error: "Failed to read from Redis", msg: error });
     }
 	}
 	
@@ -27,7 +27,7 @@ export default async function connector(
       await client.set(key, value, { EX: 3600 }); // Set key with 1-hour expiration
       return res.status(200).json({ message: `Stored ${key}: ${value}` });
     } catch (error) {
-      return res.status(500).json({ error: "Failed to write to Redis" });
+      return res.status(500).json({ error: "Failed to write to Redis", msg: error });
     }
   }
 

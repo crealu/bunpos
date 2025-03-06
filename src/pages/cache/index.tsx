@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useMemo, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 
 type Pair = {
 	key: string,
