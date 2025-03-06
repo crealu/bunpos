@@ -44,7 +44,6 @@ export default function Chat() {
 	const [messages, setMessages] = useState<Message[]>([{ role: '', content: '' }]);
 	const [prompt, setPrompt] = useState<string>('');
 
-
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 		const res = await fetch(`${baseUrl}/api/messages`);
@@ -85,7 +84,11 @@ export default function Chat() {
 		setMessages(newThread);
 
 		const theTail = newThread.length >= 4 ? newThread.slice(newThread.length - 4) : newThread;
-		const response = await askAgent(theTail);
+		// const response = await askAgent(theTail);
+		const response = {
+			role: 'assistant',
+			content: 'Agent unavailable'
+		}
 		const updatedMessages = [...newThread, response];
 
 		setPrompt('');
@@ -93,7 +96,7 @@ export default function Chat() {
 	}
 
 	useEffect(() => { 
-		getMessages(); 
+		getMessages();
 	}, []);
 
 	return (
