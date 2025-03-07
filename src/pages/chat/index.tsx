@@ -1,6 +1,5 @@
 "use client";
 import styles from "@/styles/chat.module.css"
-import homeStyles from "@/styles/home.module.css"
 import { useState, useEffect, FormEvent } from 'react';
 
 interface BubbleProps {
@@ -43,6 +42,7 @@ export default function Chat() {
 	const [name, setName] = useState<string>('');
 	const [messages, setMessages] = useState<Message[]>([{ role: '', content: '' }]);
 	const [prompt, setPrompt] = useState<string>('');
+	const [useSideBar, setUseSideBar] = useState<boolean>(true);
 
 	async function getMessages() {
 		const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -100,13 +100,50 @@ export default function Chat() {
 		setMessages(updatedMessages);
 	}
 
-	useEffect(() => { 
+	function startNewChat() {
+		setName('');
+		setMessages([]);
+	}
+
+	useEffect(() => {
 		getMessages();
 	}, []);
 
 	return (
-		<div className={homeStyles.main}>
+		<div className={styles.ui}>
+			<div 
+				className={`${styles.side_bar} ${useSideBar ? styles.side_bar_revealed : styles.side_bar_hidden}`}
+
+			>
+				<div className={styles.side_bar_top}>
+					<img 
+						onClick={() => { setUseSideBar(!useSideBar) }}
+						className={styles.side_bar_img}
+						src="media/sidebar.png"
+						/>
+					<img 
+						onClick={() => { startNewChat() }}
+						className={styles.side_bar_img}
+						src="media/edit.png" 
+					/>
+				</div>
+				<div className={styles.side_bar_bottom}>
+					<div className={styles.chat_title}>{name}</div>
+				</div>
+			</div>
 			<div className={styles.chat}>
+				<div className={`${styles.chat_side} ${!useSideBar ? styles.chat_side_revealed : styles.chat_side_hidden}`}>
+					<img 
+						onClick={() => { setUseSideBar(!useSideBar) }}
+						className={styles.side_bar_img}
+						src="media/sidebar.png"
+					/>
+					<img 
+						onClick={() => { startNewChat() }}
+						className={styles.side_bar_img}
+						src="media/edit.png"
+					/>
+				</div>
 				<div className={styles.feed}>
 					<h4 className={styles.chat_title}>{name}</h4>
 					<div className={styles.thread}>

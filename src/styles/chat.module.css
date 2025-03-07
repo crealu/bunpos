@@ -1,6 +1,66 @@
+.ui {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.side_bar {
+	width: 350px;
+	height: 100vh;
+	background-color: var(--main-gray-2);
+	overflow: hidden;
+	transition: width 0.25s ease;
+}
+
+.side_bar_hidden {
+	width: 0px;
+}
+
+.side_bar_revealed {
+	width: 350px;
+}
+
+.side_bar_top {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	align-content: center;
+}
+
+.side_bar_img {
+	margin: 20px;
+	width: 20px;
+	opacity: 0.8;
+	transition: 0.25s ease;
+	cursor: pointer;
+}
+
+.side_bar_img:hover {
+	opacity: 1.0;
+}
+
 .chat {
+	margin-top: 40px;
 	width: 100%;
 }
+
+.chat_side {
+	position: absolute;
+    top: 0px;
+	transition: opacity 0.25s ease;
+}
+
+.chat_side_hidden {
+	opacity: 0.0;
+}
+
+.chat_side_revealed {
+	opacity: 1.0;
+}
+
 
 .feed {
 	display: flex;
