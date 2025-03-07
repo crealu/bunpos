@@ -113,7 +113,6 @@ export default function Chat() {
 		<div className={styles.ui}>
 			<div 
 				className={`${styles.side_bar} ${useSideBar ? styles.side_bar_revealed : styles.side_bar_hidden}`}
-
 			>
 				<div className={styles.side_bar_top}>
 					<img 
@@ -154,7 +153,7 @@ export default function Chat() {
 
 					<div className={styles.input_wrapper}>
 						<div className={styles.input_wrapper_top}>
-							<textarea 
+							<textarea
 								value={prompt}
 								className={styles.prompt}
 								onInput={(e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => { updatePrompt(e) }}

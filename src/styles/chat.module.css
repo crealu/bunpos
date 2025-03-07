@@ -118,6 +118,10 @@
 	width: calc(600px - 20px);
 }
 
+.input_wrapper_top {
+	display: grid;
+}
+
 .prompt {
 	resize: none;
 	font-size: 16px;
