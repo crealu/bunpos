@@ -30,7 +30,7 @@ const Cache:React.FC<CacheProps> = ({ val, updateVal }) => {
 
 	useEffect(() => {
 		getCache();
-	}, [val]);
+	}, [val, getCache]);
 
 	return (
 		<div>
